@@ -1,57 +1,62 @@
 #include "sort.h"
+
 /**
- * quick_sort - function that sorts an array
- * of integers in ascending order using the
- * quick sort algorithm
+ * quick_sort - Custom implementation of quick sort for array
+ * @array: Input array of integers
+ * @size: Size of the array
  *
- * @array: input arrray
- * @size: size of the array
- * Return: no return
+ * Description: Implements a custom version of the Quick Sort algorithm to
+ *              sort the elements of the array using the quick_sort function.
  */
 void quick_sort(int *array, size_t size)
 {
-	_qsort(array, 0, size - 1, size);
+    custom_qsort(array, 0, size - 1, size);
 }
-/**
- * _qsort - auxiliar function for the
- * quick_sort function
- * @a: input arrray
- * @low: index for the first element
- * @high: index for the last element
- * @size: size of the array
- * Return: no return
- */
-void _qsort(int *a, int low, int high, int size)
-{
-	int p, w, i;
-	int tmp;
 
-	if (low < high)
-	{
-		p = high;
-		w = low;
-		for (i = low; i < high; i++)
-		{
-			if (a[i] < a[p])
-			{
-				if (i != w)
-				{
-					tmp = a[i];
-					a[i] = a[w];
-					a[w] = tmp;
-					print_array(a, size);
-				}
-				w++;
-			}
-		}
-		if (w != p && a[w] != a[p])
-		{
-			tmp = a[w];
-			a[w] = a[p];
-			a[p] = tmp;
-			print_array(a, size);
-		}
-		_qsort(a, low, w - 1, size);
-		_qsort(a, w + 1, high, size);
-	}
+/**
+ * qsort - Auxiliary function for the custom_quick_sort function
+ * @a: Input array
+ * @low: Index for the first element
+ * @high: Index for the last element
+ * @size: Size of the array
+ *
+ * Description: Implements a custom version of the Quick Sort algorithm.
+ */
+void qsort(int *a, int low, int high, int size)
+{
+    int pivot, wall, i;
+    int temp;
+
+    if (low < high)
+    {
+        pivot = high;
+        wall = low;
+
+        for (i = low; i < high; i++)
+        {
+            if (a[i] < a[pivot])
+            {
+                if (i != wall)
+                {
+                    temp = a[i];
+                    a[i] = a[wall];
+                    a[wall] = temp;
+                    print_array(a, size);
+                }
+                wall++;
+            }
+        }
+
+        if (wall != pivot && a[wall] != a[pivot])
+        {
+            temp = a[wall];
+            a[wall] = a[pivot];
+            a[pivot] = temp;
+            print_array(a, size);
+        }
+
+        custom_qsort(a, low, wall - 1, size);
+        custom_qsort(a, wall + 1, high, size);
+    }
 }
+

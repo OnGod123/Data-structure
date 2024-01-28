@@ -2,46 +2,46 @@
 #include <stdio.h>
 
 /**
- * insertion_sort_list - sorts a DLL of integers in
- * ascending order using the insertion sort
- * algorithm
+ * insertion_sort_list - Custom implementation of insertion sort for list
+ * @list: A pointer to the head of the linked list
  *
- * @list: doubly linked list
- * Return: no return
+ * Description: Implements a custom version of the Insertion Sort algorithm to
+ *              sort the elements of the linked list using the insertion_sort_list function.
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *ptr, *tmp;
+    listint_t *current, *temp;
 
-	if (!list)
-		return;
+    if (!list)
+        return;
 
-	ptr = *list;
+    current = *list;
 
-	while (ptr)
-	{
-		while (ptr->next && (ptr->n > ptr->next->n))
-		{
-			tmp = ptr->next;
-			ptr->next = tmp->next;
-			tmp->prev = ptr->prev;
+    while (current)
+    {
+        while (current->next && (current->n > current->next->n))
+        {
+            temp = current->next;
+            current->next = temp->next;
+            temp->prev = current->prev;
 
-			if (ptr->prev)
-				ptr->prev->next = tmp;
+            if (current->prev)
+                current->prev->next = temp;
 
-			if (tmp->next)
-				tmp->next->prev = ptr;
+            if (temp->next)
+                temp->next->prev = current;
 
-			ptr->prev = tmp;
-			tmp->next = ptr;
+            current->prev = temp;
+            temp->next = current;
 
-			if (tmp->prev)
-				ptr = tmp->prev;
-			else
-				*list = tmp;
+            if (temp->prev)
+                current = temp->prev;
+            else
+                *list = temp;
 
-			print_list(*list);
-		}
-		ptr = ptr->next;
-	}
+            print_list(*list);
+        }
+        current = current->next;
+    }
 }
+
