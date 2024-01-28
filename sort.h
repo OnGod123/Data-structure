@@ -8,6 +8,7 @@
  * @prev: Pointer to the previous element of the list
  * @next: Pointer to the next element of the list
  */
+#include <stdlib.h>
 typedef struct listint_s
 {
     const int n;
@@ -28,4 +29,5 @@ void cocktail_sort_list(listint_t **list);
 void increase_sort(listint_t **ptr, listint_t **limit, listint_t **list);
 void swap_list(listint_t **ptr1, listint_t **ptr2, int n);
 void decrease_sort(listint_t **ptr, listint_t **limit, listint_t **list);
+void counting_sort(int *array, size_t size);
 #endif
